@@ -9,7 +9,7 @@ Funcionalidade: Começar jogo
     Ao começar o jogo, é mostrada a mensagem inicial para o jogador.
 
     Quando começo um novo jogo
-    Então vejo na tela:
+    Então o jogo termina com a seguinte mensagem na tela:
       """
       Bem-vindo ao jogo da forca!
       """
@@ -23,7 +23,7 @@ Funcionalidade: Começar jogo
 
     Dado que comecei um jogo
     Quando escolho que a palavra a ser sorteada deverá ter "4" letras
-    Então vejo na tela:
+    Então o jogo termina com a seguinte mensagem na tela:
       """
       _ _ _ _
       """

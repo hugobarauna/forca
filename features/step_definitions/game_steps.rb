@@ -13,6 +13,6 @@ $/ do |number_of_letters|
   type(number_of_letters)
 end
 
-Então /^vejo na tela:$/ do |text|
-  assert_partial_output(text, all_stdout)
+Então /^o jogo termina com a seguinte mensagem na tela:$/ do |text|
+  assert_passing_with(text)
 end
