@@ -1,13 +1,9 @@
 # encoding: UTF-8
 
 Quando /^começo um novo jogo$/ do
-  steps %{
-    * I run `forca` interactively
-  }
+  run_interactive("forca")
 end
 
 Então /^vejo na tela:$/ do |text|
-  steps %{
-    * the stdout should contain "#{text}"
-  }
+  assert_partial_output(text, all_stdout)
 end
