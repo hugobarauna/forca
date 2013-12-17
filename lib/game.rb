@@ -19,6 +19,10 @@ class Game
 
   def next_step
     @ui.write("Qual o tamanho da palavra a ser sorteada?")
-    word_length = @ui.read
+    player_input = @ui.read.strip
+
+    if player_input == "fim"
+      @ended = true
+    end
   end
 end

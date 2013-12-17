@@ -4,7 +4,7 @@ require 'spec_helper'
 require 'game'
 
 describe Game do
-  let(:ui) { double("ui") }
+  let(:ui) { double("ui").as_null_object }
 
   subject(:game) { Game.new(ui) }
 
@@ -33,6 +33,15 @@ describe Game do
 
         game.next_step
       end
+    end
+
+    it "finishes the game when the player asks to" do
+      player_input = "fim"
+      allow(ui).to receive(:read).and_return(player_input)
+
+      game.next_step
+
+      expect(game).to be_ended
     end
   end
 end
