@@ -1,7 +1,11 @@
 # encoding: UTF-8
 
+Dado /^que comecei um jogo$/ do
+  start_new_game
+end
+
 Quando /^começo um novo jogo$/ do
-  run_interactive("forca")
+  start_new_game
 end
 
 Então /^vejo na tela:$/ do |text|
