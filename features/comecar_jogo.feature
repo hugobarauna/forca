@@ -15,7 +15,6 @@ Funcionalidade: Começar jogo
       Bem-vindo ao jogo da forca!
       """
 
-  @wip
   Cenário: Sorteio da palavra com sucesso
     Após o jogador começar o jogo, ele deve escolher o tamanho da
     palavra a ser adivinhada. Ao escolher o tamanho, o jogo sorteia a
