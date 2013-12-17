@@ -5,8 +5,9 @@ require 'game'
 
 describe Game do
   let(:output) { double("output") }
+  let(:input)  { double("input") }
 
-  subject(:game) { Game.new(output) }
+  subject(:game) { Game.new(output, input) }
 
   describe "#start" do
     it "prints the initial message" do
@@ -28,6 +29,8 @@ describe Game do
       it "asks the player for the length of the word to be raffled" do
         question = "Qual o tamanho da palavra a ser sorteada?"
         expect(output).to receive(:puts).with(question)
+
+        expect(input).to receive(:gets)
 
         game.next_step
       end
