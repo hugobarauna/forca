@@ -2,11 +2,11 @@
 
 $:.unshift File.join(File.dirname(__FILE__), "..", "lib")
 
-require 'game'
+require 'game_flow'
 
-game = Game.new
-game.start
+game_flow = GameFlow.new
+game_flow.start
 
-while not game.ended?
-  game.next_step
+while not game_flow.ended?
+  game_flow.next_step
 end
