@@ -39,7 +39,7 @@ Funcionalidade: Começar jogo
     E termino o jogo
     Então o jogo termina com a seguinte mensagem na tela:
       """
-      Não temos uma palavra com o tamanho desejado,
-      é necessário escolher outro tamanho.
+      Não temos uma palavra com o tamanho desejado,
+      é necessário escolher outro tamanho.
       Qual o tamanho da palavra a ser sorteada?
       """

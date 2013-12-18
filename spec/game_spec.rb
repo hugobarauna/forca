@@ -5,8 +5,9 @@ require 'game'
 
 describe Game do
   let(:ui) { double("ui").as_null_object }
+  let(:word_raffler) { double("word raffler").as_null_object }
 
-  subject(:game) { Game.new(ui) }
+  subject(:game) { Game.new(ui, word_raffler) }
 
   describe "#start" do
     it "prints the initial message" do
@@ -41,14 +42,15 @@ describe Game do
         word_length = "3"
         allow(ui).to receive(:read).and_return(word_length)
 
-        game.next_step
+        expect(word_raffler).to receive(:raffle).with(word_length.to_i)
 
-        expect(game.raffled_word).to have(word_length).letters
+        game.next_step
       end
 
       it "prints a '_' for each letter in the raffled word" do
         word_length = "3"
         allow(ui).to receive(:read).and_return(word_length)
+        allow(word_raffler).to receive(:raffle).and_return("mom")
 
         expect(ui).to receive(:write).with("_ _ _")
 
@@ -58,10 +60,11 @@ describe Game do
       it "tells if it's not possible to raffle with the given length" do
         word_length = "20"
         allow(ui).to receive(:read).and_return(word_length)
+        allow(word_raffler).to receive(:raffle).and_return(nil)
 
-        error_message = "Não temos uma palavra com o tamanho " <<
+        error_message = "Não temos uma palavra com o tamanho " <<
                         "desejado,\n" <<
-                        "é necessário escolher outro tamanho."
+                        "é necessário escolher outro tamanho."
 
         expect(ui).to receive(:write).with(error_message)
 
