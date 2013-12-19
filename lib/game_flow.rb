@@ -61,6 +61,13 @@ class GameFlow
       if @game.guess_letter(letter)
         @ui.write("Você adivinhou uma letra com sucesso.")
         @ui.write(guessed_letters)
+      else
+        @ui.write("Você errou a letra.")
+
+        missed_parts_message = "O boneco da forca perdeu as " <<
+        "seguintes partes do corpo: "
+        missed_parts_message << @game.missed_parts.join(", ")
+        @ui.write(missed_parts_message)
       end
     end
   end

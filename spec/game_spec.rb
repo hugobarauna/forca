@@ -82,6 +82,14 @@ describe Game do
       expect(game.guess_letter("z")).to be_false
     end
 
+    it "updates the missed parts when the guess is wrong" do
+      game.raffled_word = "hey"
+
+      game.guess_letter("z")
+
+      expect(game.missed_parts).to eq(["cabeça"])
+    end
+
     it "returns false if the given letter is an blank string" do
      game.raffled_word = "hey"
 
@@ -100,6 +108,22 @@ describe Game do
 
     it "returns an empty array when there's no guessed letters" do
       expect(game.guessed_letters).to eq([])
+    end
+  end
+
+  describe "#missed_parts" do
+    it "returns an empty array when there's no missed parts" do
+      expect(game.missed_parts).to eq([])
+    end
+
+    it "returns the missed parts for each fail in guessing a letter" do
+      game.raffled_word = "hey"
+
+      3.times do
+        game.guess_letter("z")
+      end
+
+      expect(game.missed_parts).to eq(["cabeça", "corpo", "braço esquerdo"])
     end
   end
 

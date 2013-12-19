@@ -40,3 +40,8 @@ Então /^o jogo mostra que eu adivinhei uma letra com sucesso$/ do
   assert_partial_output("Você adivinhou uma letra com sucesso.",
                          all_stdout)
 end
+
+Então /^o jogo mostra que eu errei a adivinhação da letra$/ do
+  assert_partial_output("Você errou a letra.",
+                        all_stdout)
+end
