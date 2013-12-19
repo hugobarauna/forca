@@ -4,7 +4,24 @@ $:.unshift File.join(File.dirname(__FILE__), "..", "lib")
 
 require 'game_flow'
 
-game_flow = GameFlow.new
+def create_game
+  word_raffler = create_word_raffler
+  Game.new(word_raffler)
+end
+
+def create_word_raffler
+  if ARGV.first
+    words = ARGV.pop
+    words = words.split
+    WordRaffler.new(words)
+  else
+    WordRaffler.new
+  end
+end
+
+game = create_game
+game_flow = GameFlow.new(game)
+
 game_flow.start
 
 while not game_flow.ended?
