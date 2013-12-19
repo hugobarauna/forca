@@ -67,6 +67,17 @@ describe GameFlow do
       end
     end
 
+    context "when the player guess a letter with success" do
+      xit "prints a success message" do
+        allow(game).to receive(:raffled_word).and_return("hey")
+
+        success_message = "Você adivinhou uma letra com sucesso."
+        expect(ui).to receive(:write).with(success_message)
+
+        game.next_step
+      end
+    end
+
     it "finishes the game when the player asks to" do
       player_input = "fim"
       allow(ui).to receive(:read).and_return(player_input)
