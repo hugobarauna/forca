@@ -107,6 +107,16 @@ describe Game do
          game.guess_letter("i")
        end.to change { game.state }.from(:word_raffled).to(:ended)
     end
+
+    it "makes a transition to the 'ended' state when the player " <<
+       "miss 6 times trying to guess a letter " do
+       game.state = :word_raffled
+       game.raffled_word = "hi"
+
+       expect do
+         6.times { game.guess_letter("z")  }
+       end.to change { game.state }.from(:word_raffled).to(:ended)
+    end
   end
 
   describe "#guessed_letters" do

@@ -91,6 +91,8 @@ class GameFlow
   def print_game_final_result
     if @game.player_won?
       @ui.write("Você venceu! :)")
+    else
+      @ui.write("Você perdeu. :(")
     end
   end
 end
