@@ -31,42 +31,51 @@ class GameFlow
   end
 
   private
-  def print_letters_feedback
-    letters_feedback = ""
-
-    @game.raffled_word.length.times do
-      letters_feedback << "_ "
-    end
-
-    letters_feedback.strip!
-
-    @ui.write(letters_feedback)
-  end
-
   def ask_to_raffle_a_word
-    @ui.write("Qual o tamanho da palavra a ser sorteada?")
-    player_input = @ui.read.strip
-
-    if player_input == "fim"
-      @game.finish
-    else
-      if @game.raffle(player_input.to_i)
-        print_letters_feedback
+    ask_the_player("Qual o tamanho da palavra a ser sorteada?") do |length|
+      if @game.raffle(length.to_i)
+        @ui.write(guessed_letters)
       else
         error_message = "Não temos uma palavra com o tamanho " <<
-                        "desejado,\n" <<
-                        "é necessário escolher outro tamanho."
+        "desejado,\n" <<
+        "é necessário escolher outro tamanho."
 
         @ui.write(error_message)
       end
     end
   end
 
-  def ask_to_guess_a_letter
-    letter = @ui.read.strip
+  def ask_the_player(question)
+    @ui.write(question)
+    player_input = @ui.read.strip
 
-    if @game.guess_letter(letter)
-      @ui.write("Você adivinhou uma letra com sucesso.")
+    if player_input == "fim"
+      @game.finish
+    else
+      yield player_input.strip
     end
+  end
+
+  def ask_to_guess_a_letter
+    ask_the_player("Qual letra você acha que a palavra tem?") do |letter|
+      if @game.guess_letter(letter)
+        @ui.write("Você adivinhou uma letra com sucesso.")
+        @ui.write(guessed_letters)
+      end
+    end
+  end
+
+  def guessed_letters
+    letters = ""
+
+    @game.raffled_word.each_char do |letter|
+      if @game.guessed_letters.include?(letter)
+        letters << letter + " "
+      else
+        letters << "_ "
+      end
+    end
+
+    letters.strip!
   end
 end

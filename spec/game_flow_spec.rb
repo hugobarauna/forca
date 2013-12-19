@@ -5,7 +5,9 @@ require 'game_flow'
 
 describe GameFlow do
   let(:ui) { double("ui").as_null_object }
-  let(:game) { double("game", state: :initial).as_null_object }
+  let(:game) { double("game",
+                      state: :initial,
+                      guessed_letters: []).as_null_object }
 
   subject(:game_flow) { GameFlow.new(game, ui) }
 
@@ -68,13 +70,30 @@ describe GameFlow do
     end
 
     context "when the game is in the 'word raffled' state" do
-      context "and the player guess a letter with success" do
-        it "prints a success message" do
-          allow(game).to receive(:state).and_return(:word_raffled)
-          allow(game).to receive(:guess_letter).and_return(true)
+      before { allow(game).to receive(:state).and_return(:word_raffled) }
 
+      it "asks the player to guess a letter" do
+        question = "Qual letra você acha que a palavra tem?"
+        expect(ui).to receive(:write).with(question)
+
+        game_flow.next_step
+      end
+
+      context "and the player guess a letter with success" do
+        before { allow(game).to receive(:guess_letter).and_return(true) }
+
+        it "prints a success message" do
           success_message = "Você adivinhou uma letra com sucesso."
           expect(ui).to receive(:write).with(success_message)
+
+          game_flow.next_step
+        end
+
+        it "prints the guessed letters" do
+          allow(game).to receive(:raffled_word).and_return("hey")
+          allow(game).to receive(:guessed_letters).and_return(["e"])
+
+          expect(ui).to receive(:write).with("_ e _")
 
           game_flow.next_step
         end
@@ -85,8 +104,12 @@ describe GameFlow do
       player_input = "fim"
       allow(ui).to receive(:read).and_return(player_input)
 
+      allow(game).to receive(:state).and_return(:initial)
       expect(game).to receive(:finish)
+      game_flow.next_step
 
+      allow(game).to receive(:state).and_return(:word_raffled)
+      expect(game).to receive(:finish)
       game_flow.next_step
     end
   end

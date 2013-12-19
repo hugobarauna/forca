@@ -18,12 +18,10 @@ Funcionalidade: Adivinhar letra
       | número de letras | palavra sorteada |
       | 3                | avo              |
 
-  @wip
   Cenário: Sucesso ao adivinhar letra
     Se o jogador adivinhar a letra com sucesso, o jogo mostra uma
     mensagem de sucesso e mostra em que posição está a letra que o
     jogador adivinhou.
-
 
     Dado que comecei um jogo
     E que escolhi que a palavra a ser sorteada deverá ter "3" letras
