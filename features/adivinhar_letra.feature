@@ -13,10 +13,27 @@ Funcionalidade: Adivinhar letra
   braço direito, perna esquerda, perna direita.
 
 
+  Contexto:
+    * o jogo tem as possíveis palavras para sortear:
+      | número de letras | palavra sorteada |
+      | 3                | avo              |
+
+  @wip
   Cenário: Sucesso ao adivinhar letra
     Se o jogador adivinhar a letra com sucesso, o jogo mostra uma
     mensagem de sucesso e mostra em que posição está a letra que o
     jogador adivinhou.
+
+
+    Dado que comecei um jogo
+    E que escolhi que a palavra a ser sorteada deverá ter "3" letras
+    Quando tento adivinhar que a palavra tem a letra "a"
+    E termino o jogo
+    Então o jogo mostra que eu adivinhei uma letra com sucesso
+    E o jogo termina com a seguinte mensagem na tela:
+      """
+      a _ _
+      """
 
   Cenário: Erro ao adivinhar letra
     Se o jogador errar ao tentar adivinhar a letra, o jogo mostra uma
