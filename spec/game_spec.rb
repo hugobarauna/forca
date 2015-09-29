@@ -55,7 +55,7 @@ describe Game do
     it "returns true if the raffled word contains the given letter" do
       game.raffled_word = "hey"
 
-      expect(game.guess_letter("h")).to be_true
+      expect(game.guess_letter("h")).to be true
     end
 
     it "saves the guessed letter when the guess is right" do
@@ -79,7 +79,7 @@ describe Game do
        " letter" do
       game.raffled_word = "hey"
 
-      expect(game.guess_letter("z")).to be_false
+      expect(game.guess_letter("z")).to be false
     end
 
     it "updates the missed parts when the guess is wrong" do
@@ -93,8 +93,8 @@ describe Game do
     it "returns false if the given letter is an blank string" do
       game.raffled_word = "hey"
 
-      expect(game.guess_letter("")).to be_false
-      expect(game.guess_letter("   ")).to be_false
+      expect(game.guess_letter("")).to be false
+      expect(game.guess_letter("   ")).to be false
     end
 
     it "makes a transition to the 'ended' state when all the letters " <<
@@ -164,7 +164,7 @@ describe Game do
       game.guess_letter("h")
       game.guess_letter("i")
 
-      expect(game.player_won?).to be_true
+      expect(game.player_won?).to be true
     end
 
     it "returns false when the player didn't guessed all letters" do
@@ -173,15 +173,15 @@ describe Game do
 
       6.times { game.guess_letter("z") }
 
-      expect(game.player_won?).to be_false
+      expect(game.player_won?).to be false
     end
 
     it "returns false when the game is not in the 'ended' state" do
       game.state = :initial
-      expect(game.player_won?).to be_false
+      expect(game.player_won?).to be false
 
       game.state = :word_raffled
-      expect(game.player_won?).to be_false
+      expect(game.player_won?).to be false
     end
   end
 end
