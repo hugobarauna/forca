@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 # Classe responsável por sortear uma palavra de uma dada lista de
 # palavras.
 #
