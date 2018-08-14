@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 require_relative 'cli_ui'
 require_relative 'word_raffler'
 
