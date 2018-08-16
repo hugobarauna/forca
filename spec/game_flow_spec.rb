@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'game_flow'
 
-describe GameFlow do
+RSpec.describe GameFlow do
   let(:ui) { double("ui").as_null_object }
   let(:game) { double("game",
                       state: :initial,
