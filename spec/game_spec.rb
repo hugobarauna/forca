@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'game'
 
-describe Game do
+RSpec.describe Game do
   let(:word_raffler) { double("raffler").as_null_object }
 
   subject(:game) { Game.new(word_raffler) }
