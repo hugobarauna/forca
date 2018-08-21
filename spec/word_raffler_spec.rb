@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'word_raffler'
 
-describe WordRaffler do
+RSpec.describe WordRaffler do
   it "raffles a word from a given list of words" do
     words = %w(me you nice)
     raffler = WordRaffler.new(words)
