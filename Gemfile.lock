@@ -43,9 +43,6 @@ GEM
     rspec-expectations (3.7.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.7.0)
-    rspec-its (1.2.0)
-      rspec-core (>= 3.0.0)
-      rspec-expectations (>= 3.0.0)
     rspec-mocks (3.7.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.7.0)
@@ -59,7 +56,6 @@ DEPENDENCIES
   aruba
   cucumber
   rspec
-  rspec-its
 
 BUNDLED WITH
-   1.16.3
+   1.16.5
