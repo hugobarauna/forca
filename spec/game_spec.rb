@@ -7,7 +7,9 @@ RSpec.describe Game do
   subject(:game) { Game.new(word_raffler) }
 
   context "when just created" do
-    its(:state) { should == :initial }
+    it "has the :initial state" do
+      expect(game.state).to eq(:initial)
+    end
   end
 
   describe "#ended?" do
