@@ -55,7 +55,7 @@ RSpec.describe Game do
     it "returns true if the raffled word contains the given letter" do
       game.raffled_word = "hey"
 
-      expect(game.guess_letter("h")).to be true
+      expect(game.guess_letter("h")).to be_truthy
     end
 
     it "saves the guessed letter when the guess is right" do
@@ -75,11 +75,10 @@ RSpec.describe Game do
       end.to_not change { game.guessed_letters }.from(["h"])
     end
 
-    it "returns false if the raffled word doesn't contain the given" <<
-       " letter" do
+    it "returns false if the raffled word doesn't contain the given letter" do
       game.raffled_word = "hey"
 
-      expect(game.guess_letter("z")).to be false
+      expect(game.guess_letter("z")).to be_falsey
     end
 
     it "updates the missed parts when the guess is wrong" do
@@ -93,8 +92,8 @@ RSpec.describe Game do
     it "returns false if the given letter is an blank string" do
       game.raffled_word = "hey"
 
-      expect(game.guess_letter("")).to be false
-      expect(game.guess_letter("   ")).to be false
+      expect(game.guess_letter("")).to be_falsey
+      expect(game.guess_letter("   ")).to be_falsey
     end
 
     it "makes a transition to the 'ended' state when all the letters " <<
@@ -164,7 +163,7 @@ RSpec.describe Game do
       game.guess_letter("h")
       game.guess_letter("i")
 
-      expect(game.player_won?).to be true
+      expect(game.player_won?).to be_truthy
     end
 
     it "returns false when the player didn't guessed all letters" do
@@ -173,15 +172,15 @@ RSpec.describe Game do
 
       6.times { game.guess_letter("z") }
 
-      expect(game.player_won?).to be false
+      expect(game.player_won?).to be_falsey
     end
 
     it "returns false when the game is not in the 'ended' state" do
       game.state = :initial
-      expect(game.player_won?).to be false
+      expect(game.player_won?).to be_falsey
 
       game.state = :word_raffled
-      expect(game.player_won?).to be false
+      expect(game.player_won?).to be_falsey
     end
   end
 end
