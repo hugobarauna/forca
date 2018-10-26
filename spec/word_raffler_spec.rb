@@ -1,4 +1,3 @@
-require 'spec_helper'
 require 'word_raffler'
 
 RSpec.describe WordRaffler do
