@@ -1,4 +1,3 @@
-require 'spec_helper'
 require 'game_flow'
 
 RSpec.describe GameFlow do
