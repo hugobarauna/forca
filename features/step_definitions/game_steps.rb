@@ -39,15 +39,16 @@ Quando /^termino o jogo$/ do
 end
 
 Então /^o jogo termina com a seguinte mensagem na tela:$/ do |text|
-  assert_passing_with(text)
+  expect(last_command_started).to be_successfully_executed
+  expect(last_command_started).to have_output including(text)
 end
 
 Então /^o jogo mostra que eu adivinhei uma letra com sucesso$/ do
-  assert_partial_output("Você adivinhou uma letra com sucesso.",
-                         all_stdout)
+  expect(last_command_started).to have_output(
+    /Você adivinhou uma letra com sucesso./
+  )
 end
 
 Então /^o jogo mostra que eu errei a adivinhação da letra$/ do
-  assert_partial_output("Você errou a letra.",
-                        all_stdout)
+  expect(last_command_started).to have_output(/Você errou a letra./)
 end
