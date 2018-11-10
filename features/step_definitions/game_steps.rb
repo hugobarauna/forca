@@ -40,7 +40,7 @@ end
 
 Então /^o jogo termina com a seguinte mensagem na tela:$/ do |text|
   expect(last_command_started).to be_successfully_executed
-  expect(last_command_started).to have_output including(text)
+  expect(last_command_started.output).to include(text)
 end
 
 Então /^o jogo mostra que eu adivinhei uma letra com sucesso$/ do
