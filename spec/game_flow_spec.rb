@@ -31,10 +31,10 @@ RSpec.describe GameFlow do
 
       context "and the player asks to raffle a word" do
         it "raffles a word with the given length" do
-          word_length = "3"
-          allow(ui).to receive(:read).and_return(word_length)
+          word_length = 3
+          allow(ui).to receive(:read).and_return(word_length.to_s)
 
-          expect(game).to receive(:raffle).with(word_length.to_i)
+          expect(game).to receive(:raffle).with(word_length)
 
           game_flow.next_step
         end
