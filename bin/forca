@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-$LOAD_PATH.prepend File.join(File.dirname(__FILE__), "..", "lib")
+$LOAD_PATH.prepend File.join(__dir__, "../lib")
 
 require 'game_flow'
 
