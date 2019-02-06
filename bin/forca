@@ -2,7 +2,7 @@
 
 $LOAD_PATH.prepend File.join(__dir__, "../lib")
 
-require 'game_flow'
+require "game_flow"
 
 def create_game
   word_raffler = create_word_raffler

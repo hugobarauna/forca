@@ -1,4 +1,4 @@
-require 'word_raffler'
+require "word_raffler"
 
 RSpec.describe WordRaffler do
   it "raffles a word from a given list of words" do

@@ -1,5 +1,5 @@
-require_relative 'cli_ui'
-require_relative 'word_raffler'
+require_relative "cli_ui"
+require_relative "word_raffler"
 
 class Game
   HANGMAN_PARTS = [
@@ -27,7 +27,7 @@ class Game
   end
 
   def guess_letter(letter)
-    return false if letter.strip == ''
+    return false if letter.strip == ""
 
     if @raffled_word.include?(letter)
       @guessed_letters << letter
