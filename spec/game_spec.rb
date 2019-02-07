@@ -1,4 +1,4 @@
-require 'game'
+require "game"
 
 RSpec.describe Game do
   let(:word_raffler) { double("raffler").as_null_object }

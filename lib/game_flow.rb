@@ -1,7 +1,7 @@
-require_relative 'cli_ui'
-require_relative 'game'
+require_relative "cli_ui"
+require_relative "game"
 
-require 'forwardable'
+require "forwardable"
 
 # Esta classe é responsável pelo fluxo do jogo.
 #

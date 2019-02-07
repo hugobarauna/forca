@@ -1,4 +1,4 @@
-require 'game_flow'
+require "game_flow"
 
 RSpec.describe GameFlow do
   let(:ui) { double("ui").as_null_object }
