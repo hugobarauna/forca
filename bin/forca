@@ -24,6 +24,6 @@ game_flow = GameFlow.new(game)
 
 game_flow.start
 
-while not game_flow.ended?
+until game_flow.ended?
   game_flow.next_step
 end
