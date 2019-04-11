@@ -12,12 +12,12 @@ Dado "que escolhi que a palavra a ser sorteada "\
   type(number_of_letters)
 end
 
-Quando "começo um novo jogo" do
+Quando "começo um novo jogo" do
   start_new_game
 end
 
 Quando "escolho que a palavra a ser sorteada "\
-       "deverá ter {string} letras" do |number_of_letters|
+       "deverá ter {string} letras" do |number_of_letters|
   type(number_of_letters)
 end
 
@@ -37,6 +37,8 @@ Quando "termino o jogo" do
 end
 
 Então "o jogo termina com a seguinte mensagem na tela:" do |text|
+  expect(last_command_stopped).to have_finished_in_time
+  expect(last_command_stopped).not_to have_output_on_stderr
   expect(last_command_stopped).to be_successfully_executed
   expect(last_command_stopped.stdout).to include(text)
 end

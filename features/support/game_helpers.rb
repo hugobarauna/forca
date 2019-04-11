@@ -6,7 +6,7 @@ module GameHelpers
   def start_new_game
     set_rafflable_words(%w[hi mom game fruit]) if @raffable_words.nil?
 
-    run_command("forca \"#{@raffable_words}\"")
+    run_command("forca \"#{@raffable_words}\"", exit_timeout: 3)
   end
 end
 

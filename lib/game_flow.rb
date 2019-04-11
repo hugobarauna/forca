@@ -1,7 +1,6 @@
+require "forwardable"
 require_relative "cli_ui"
 require_relative "game"
-
-require "forwardable"
 
 # Esta classe é responsável pelo fluxo do jogo.
 #
@@ -31,14 +30,15 @@ class GameFlow
   end
 
   private
+
   def ask_to_raffle_a_word
     ask_the_player("Qual o tamanho da palavra a ser sorteada?") do |length|
       if @game.raffle(length.to_i)
         @ui.write(guessed_letters)
       else
-        error_message = "Não temos uma palavra com o tamanho " <<
-        "desejado,\n" <<
-        "é necessário escolher outro tamanho."
+        error_message =
+          "Não temos uma palavra com o tamanho desejado,\n"\
+          "é necessário escolher outro tamanho."
 
         @ui.write(error_message)
       end
@@ -64,8 +64,8 @@ class GameFlow
       else
         @ui.write("Você errou a letra.")
 
-        missed_parts_message = "O boneco da forca perdeu as " <<
-        "seguintes partes do corpo: "
+        missed_parts_message = "O boneco da forca perdeu as " \
+                               "seguintes partes do corpo: "
         missed_parts_message << @game.missed_parts.join(", ")
         @ui.write(missed_parts_message)
       end
@@ -73,17 +73,11 @@ class GameFlow
   end
 
   def guessed_letters
-    letters = ""
-
-    @game.raffled_word.each_char do |letter|
-      if @game.guessed_letters.include?(letter)
-        letters << letter + " "
-      else
-        letters << "_ "
-      end
+    letters = @game.raffled_word.chars.map do |letter|
+      @game.guessed_letters.include?(letter) ? letter : "_"
     end
 
-    letters.strip!
+    letters.join(" ")
   end
 
   def print_game_final_result
