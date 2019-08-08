@@ -7,8 +7,8 @@ Dado "que comecei um jogo" do
   start_new_game
 end
 
-Dado "que escolhi que a palavra a ser sorteada "\
-     "deverá ter {string} letras" do |number_of_letters|
+Dado "que escolhi que uma palavra com {string} letras "\
+     "deve ser sorteada" do |number_of_letters|
   type(number_of_letters)
 end
 
@@ -16,8 +16,8 @@ Quando "começo um novo jogo" do
   start_new_game
 end
 
-Quando "escolho que a palavra a ser sorteada "\
-       "deverá ter {string} letras" do |number_of_letters|
+Quando "escolho que uma palavra com {string} letras "\
+       "deve ser sorteada" do |number_of_letters|
   type(number_of_letters)
 end
 
