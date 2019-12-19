@@ -14,6 +14,6 @@ RSpec.describe WordRaffler do
     words = %w(me you nice)
     raffler = WordRaffler.new(words)
 
-    expect(raffler.raffle(20)).to be_nil
+    expect(raffler.raffle(9)).to be_nil
   end
 end

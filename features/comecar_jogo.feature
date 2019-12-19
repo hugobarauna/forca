@@ -23,7 +23,7 @@ Funcionalidade: Começar jogo
     a palavra sorteada tem.
 
     Dado que comecei um jogo
-    Quando escolho que a palavra a ser sorteada deverá ter "4" letras
+    Quando escolho que uma palavra com "4" letras deve ser sorteada
     E termino o jogo
     Então o jogo termina com a seguinte mensagem na tela:
       """
@@ -36,7 +36,7 @@ Funcionalidade: Começar jogo
     disso e o jogo deve pedir pro jogador sortear outra palavra.
 
     Dado que comecei um jogo
-    Quando escolho que a palavra a ser sorteada deverá ter "20" letras
+    Quando escolho que uma palavra com "9" letras deve ser sorteada
     E termino o jogo
     Então o jogo termina com a seguinte mensagem na tela:
       """

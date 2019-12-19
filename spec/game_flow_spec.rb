@@ -3,7 +3,11 @@ require "game_flow"
 RSpec.describe GameFlow do
   let(:ui) { double("ui").as_null_object }
   let(:game) do
-    double("game", state: :initial, guessed_letters: []).as_null_object
+    double(
+      "game",
+      state: :initial,
+      guessed_letters: []
+    ).as_null_object
   end
 
   subject(:game_flow) { GameFlow.new(game, ui) }
@@ -51,7 +55,7 @@ RSpec.describe GameFlow do
         end
 
         it "tells if it's not possible to raffle with the given length" do
-          word_length = "20"
+          word_length = "9"
           allow(ui).to receive(:read).and_return(word_length)
           allow(game).to receive(:raffle).and_return(nil)
 
