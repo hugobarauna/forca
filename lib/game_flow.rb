@@ -32,7 +32,8 @@ class GameFlow
   private
 
   def ask_to_raffle_a_word
-    ask_the_player("Qual o tamanho da palavra a ser sorteada?") do |length|
+    question = "Qual o tamanho da palavra a ser sorteada?"
+    ask_the_player(question) do |length|
       if @game.raffle(length.to_i)
         @ui.write(guessed_letters)
       else
@@ -57,7 +58,8 @@ class GameFlow
   end
 
   def ask_to_guess_a_letter
-    ask_the_player("Qual letra você acha que a palavra tem?") do |letter|
+    question = "Qual letra você acha que a palavra tem?"
+    ask_the_player(question) do |letter|
       if @game.guess_letter(letter)
         @ui.write("Você adivinhou uma letra com sucesso.")
         @ui.write(guessed_letters)

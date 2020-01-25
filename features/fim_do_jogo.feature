@@ -18,7 +18,7 @@ Funcionalidade: Fim do jogo
     forca apareçam.
 
     Dado que comecei um jogo
-    E que escolhi que uma palavra com "3" letras deve ser sorteada
+    E que escolhi que a palavra a ser sorteada tem "3" letras
     Quando tento adivinhar que a palavra tem a letra "a"
     E tento adivinhar que a palavra tem a letra "v"
     E tento adivinhar que a palavra tem a letra "o"
@@ -32,7 +32,7 @@ Funcionalidade: Fim do jogo
     tentar adivinhar uma letra.
 
     Dado que comecei um jogo
-    E que escolhi que uma palavra com "3" letras deve ser sorteada
+    E que escolhi que a palavra a ser sorteada tem "3" letras
     Quando tento adivinhar que a palavra tem a letra "z" "6" vezes
     Então o jogo termina com a seguinte mensagem na tela:
       """
