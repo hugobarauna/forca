@@ -1,4 +1,5 @@
-Dado "o jogo tem as possíveis palavras para sortear:" do |words_table|
+Dado "o jogo tem as possíveis palavras " \
+     "para sortear:" do |words_table|
   words = words_table.rows.map(&:last).join(" ")
   set_rafflable_words(words)
 end
@@ -7,8 +8,8 @@ Dado "que comecei um jogo" do
   start_new_game
 end
 
-Dado "que escolhi que uma palavra com {string} letras "\
-     "deve ser sorteada" do |number_of_letters|
+Dado "que escolhi que a palavra a ser sorteada " \
+     "tem {string} letras" do |number_of_letters|
   type(number_of_letters)
 end
 
@@ -21,12 +22,13 @@ Quando "escolho que uma palavra com {string} letras "\
   type(number_of_letters)
 end
 
-Quando "tento adivinhar que a palavra tem a letra {string}" do |letter|
+Quando "tento adivinhar que a palavra " \
+       "tem a letra {string}" do |letter|
   type(letter)
 end
 
-Quando 'tento adivinhar que a palavra '\
-       'tem a letra {string} "{int}" vezes' do |letter, number_of_guesses|
+Quando 'tento adivinhar que a palavra tem a letra {string} '\
+       '"{int}" vezes' do |letter, number_of_guesses|
   number_of_guesses.times do
     type(letter)
   end
@@ -50,5 +52,6 @@ Então "o jogo mostra que eu adivinhei uma letra com sucesso" do
 end
 
 Então "o jogo mostra que eu errei a adivinhação da letra" do
-  expect(last_command_stopped.stdout).to include("Você errou a letra.")
+  output = last_command_stopped.stdout
+  expect(output).to include("Você errou a letra.")
 end

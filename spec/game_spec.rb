@@ -141,7 +141,8 @@ RSpec.describe Game do
         game.guess_letter("z")
       end
 
-      expect(game.missed_parts).to eq(["cabeça", "corpo", "braço esquerdo"])
+      missed_parts = ["cabeça", "corpo", "braço esquerdo"]
+      expect(game.missed_parts).to eq(missed_parts)
     end
   end
 

@@ -24,7 +24,7 @@ Funcionalidade: Adivinhar letra
     jogador adivinhou.
 
     Dado que comecei um jogo
-    E que escolhi que uma palavra com "3" letras deve ser sorteada
+    E que escolhi que a palavra a ser sorteada tem "3" letras
     Quando tento adivinhar que a palavra tem a letra "a"
     E termino o jogo
     Então o jogo mostra que eu adivinhei uma letra com sucesso
@@ -39,7 +39,7 @@ Funcionalidade: Adivinhar letra
     forca já perdeu.
 
     Dado que comecei um jogo
-    E que escolhi que uma palavra com "3" letras deve ser sorteada
+    E que escolhi que a palavra a ser sorteada tem "3" letras
     Quando tento adivinhar que a palavra tem a letra "z"
     E termino o jogo
     Então o jogo mostra que eu errei a adivinhação da letra
@@ -53,7 +53,7 @@ Funcionalidade: Adivinhar letra
     pra ele as letras que ele adivinhou.
 
     Dado que comecei um jogo
-    E que escolhi que uma palavra com "3" letras deve ser sorteada
+    E que escolhi que a palavra a ser sorteada tem "3" letras
     Quando tento adivinhar que a palavra tem a letra "a"
     E tento adivinhar que a palavra tem a letra "v"
     E termino o jogo
@@ -67,7 +67,7 @@ Funcionalidade: Adivinhar letra
     forca são perdidas.
 
     Dado que comecei um jogo
-    E que escolhi que uma palavra com "3" letras deve ser sorteada
+    E que escolhi que a palavra a ser sorteada tem "3" letras
     Quando tento adivinhar que a palavra tem a letra "z"
     E tento adivinhar que a palavra tem a letra "y"
     E termino o jogo
