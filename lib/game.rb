@@ -1,7 +1,5 @@
-# encoding: UTF-8
-
-require_relative 'cli_ui'
-require_relative 'word_raffler'
+require_relative "cli_ui"
+require_relative "word_raffler"
 
 class Game
   HANGMAN_PARTS = [
@@ -11,7 +9,7 @@ class Game
 
   attr_accessor :raffled_word
   attr_accessor :state
-  attr_accessor :guessed_letters
+  attr_reader   :guessed_letters
   attr_reader   :missed_parts
 
   def initialize(word_raffler = WordRaffler.new)
@@ -23,13 +21,15 @@ class Game
   end
 
   def raffle(word_length)
-    if @raffled_word = @word_raffler.raffle(word_length)
+    @raffled_word = @word_raffler.raffle(word_length)
+
+    if @raffled_word
       @state = :word_raffled
     end
   end
 
   def guess_letter(letter)
-    return false if letter.strip == ''
+    return false if letter.strip.empty?
 
     if @raffled_word.include?(letter)
       @guessed_letters << letter
@@ -37,14 +37,14 @@ class Game
 
       @state = :ended if all_letters_were_guessed?
 
-      return true
+      true
     else
       @missed_parts << HANGMAN_PARTS[@wrong_guesses]
       @wrong_guesses += 1
 
       @state = :ended if @wrong_guesses == 6
 
-      return false
+      false
     end
   end
 
@@ -63,9 +63,10 @@ class Game
   end
 
   private
-  def all_letters_were_guessed?
-    raffled_word_letters = @raffled_word.to_s.chars.to_a.uniq.sort
 
-    @guessed_letters.sort == raffled_word_letters
+  def all_letters_were_guessed?
+    raffled_word_letters = @raffled_word.to_s.chars.uniq
+
+    @guessed_letters.sort == raffled_word_letters.sort
   end
 end

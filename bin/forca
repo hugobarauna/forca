@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
-$:.unshift File.join(File.dirname(__FILE__), "..", "lib")
+$LOAD_PATH.prepend File.join(__dir__, "../lib")
 
-require 'game_flow'
+require "game_flow"
 
 def create_game
   word_raffler = create_word_raffler
@@ -24,6 +24,6 @@ game_flow = GameFlow.new(game)
 
 game_flow.start
 
-while not game_flow.ended?
+until game_flow.ended?
   game_flow.next_step
 end

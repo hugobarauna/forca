@@ -1,15 +1,14 @@
-# encoding: UTF-8
+require "game"
 
-require 'spec_helper'
-require 'game'
-
-describe Game do
-  let(:word_raffler) { double("raffler").as_null_object }
+RSpec.describe Game do
+  let(:word_raffler) { double("word raffler").as_null_object }
 
   subject(:game) { Game.new(word_raffler) }
 
   context "when just created" do
-    its(:state) { should == :initial }
+    it "has the :initial state" do
+      expect(game.state).to eq(:initial)
+    end
   end
 
   describe "#ended?" do
@@ -37,9 +36,10 @@ describe Game do
     it "makes a transition from :initial to :word_raffled on success" do
       allow(word_raffler).to receive(:raffle).and_return("mom")
 
-      expect do
-        game.raffle(3)
-      end.to change { game.state }.from(:initial).to(:word_raffled)
+      expect { game.raffle(3) }
+        .to change { game.state }
+        .from(:initial)
+        .to(:word_raffled)
     end
 
     it "stays on the :initial state when a word can't be raffled" do
@@ -55,31 +55,28 @@ describe Game do
     it "returns true if the raffled word contains the given letter" do
       game.raffled_word = "hey"
 
-      expect(game.guess_letter("h")).to be true
+      expect(game.guess_letter("h")).to be_truthy
     end
 
     it "saves the guessed letter when the guess is right" do
       game.raffled_word = "hey"
 
-      expect do
-        game.guess_letter("h")
-      end.to change { game.guessed_letters }.from([]).to(["h"])
+      expect { game.guess_letter("h") }
+        .to change { game.guessed_letters }.from([]).to(["h"])
     end
 
     it "does not save a guessed letter more than once" do
       game.raffled_word = "hey"
       game.guess_letter("h")
 
-      expect do
-        game.guess_letter("h")
-      end.to_not change { game.guessed_letters }.from(["h"])
+      expect { game.guess_letter("h") }
+        .to_not change { game.guessed_letters }.from(["h"])
     end
 
-    it "returns false if the raffled word doesn't contain the given" <<
-       " letter" do
+    it "returns false if the raffled word doesn't contain the given letter" do
       game.raffled_word = "hey"
 
-      expect(game.guess_letter("z")).to be false
+      expect(game.guess_letter("z")).to be_falsey
     end
 
     it "updates the missed parts when the guess is wrong" do
@@ -90,32 +87,32 @@ describe Game do
       expect(game.missed_parts).to eq(["cabeça"])
     end
 
-    it "returns false if the given letter is an blank string" do
+    it "returns false if the given letter is a blank string" do
       game.raffled_word = "hey"
 
-      expect(game.guess_letter("")).to be false
-      expect(game.guess_letter("   ")).to be false
+      expect(game.guess_letter("")).to be_falsey
+      expect(game.guess_letter("   ")).to be_falsey
     end
 
-    it "makes a transition to the 'ended' state when all the letters " <<
-       "are guessed with success" do
-       game.state = :word_raffled
-       game.raffled_word = "hi"
+    it "makes a transition to the 'ended' state "\
+       "when all the letters are guessed with success" do
+      game.state = :word_raffled
+      game.raffled_word = "hi"
 
-       expect do
-         game.guess_letter("h")
-         game.guess_letter("i")
-       end.to change { game.state }.from(:word_raffled).to(:ended)
+      expect do
+        game.guess_letter("h")
+        game.guess_letter("i")
+      end.to change { game.state }.from(:word_raffled).to(:ended)
     end
 
-    it "makes a transition to the 'ended' state when the player " <<
-       "miss 6 times trying to guess a letter " do
-       game.state = :word_raffled
-       game.raffled_word = "hi"
+    it "makes a transition to the 'ended' state when the player "\
+       "misses 6 times trying to guess a letter" do
+      game.state = :word_raffled
+      game.raffled_word = "hi"
 
-       expect do
-         6.times { game.guess_letter("z")  }
-       end.to change { game.state }.from(:word_raffled).to(:ended)
+      expect do
+        6.times { game.guess_letter("z")  }
+      end.to change { game.state }.from(:word_raffled).to(:ended)
     end
   end
 
@@ -144,7 +141,8 @@ describe Game do
         game.guess_letter("z")
       end
 
-      expect(game.missed_parts).to eq(["cabeça", "corpo", "braço esquerdo"])
+      missed_parts = ["cabeça", "corpo", "braço esquerdo"]
+      expect(game.missed_parts).to eq(missed_parts)
     end
   end
 
@@ -164,24 +162,24 @@ describe Game do
       game.guess_letter("h")
       game.guess_letter("i")
 
-      expect(game.player_won?).to be true
+      expect(game.player_won?).to be_truthy
     end
 
-    it "returns false when the player didn't guessed all letters" do
+    it "returns false when the player didn't guess all letters" do
       game.state = :word_raffled
       game.raffled_word = "hi"
 
       6.times { game.guess_letter("z") }
 
-      expect(game.player_won?).to be false
+      expect(game.player_won?).to be_falsey
     end
 
     it "returns false when the game is not in the 'ended' state" do
       game.state = :initial
-      expect(game.player_won?).to be false
+      expect(game.player_won?).to be_falsey
 
       game.state = :word_raffled
-      expect(game.player_won?).to be false
+      expect(game.player_won?).to be_falsey
     end
   end
 end

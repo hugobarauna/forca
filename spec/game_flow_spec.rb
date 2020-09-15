@@ -1,13 +1,14 @@
-# encoding: UTF-8
+require "game_flow"
 
-require 'spec_helper'
-require 'game_flow'
-
-describe GameFlow do
+RSpec.describe GameFlow do
   let(:ui) { double("ui").as_null_object }
-  let(:game) { double("game",
-                      state: :initial,
-                      guessed_letters: []).as_null_object }
+  let(:game) do
+    double(
+      "game",
+      state: :initial,
+      guessed_letters: []
+    ).as_null_object
+  end
 
   subject(:game_flow) { GameFlow.new(game, ui) }
 
@@ -34,10 +35,10 @@ describe GameFlow do
 
       context "and the player asks to raffle a word" do
         it "raffles a word with the given length" do
-          word_length = "3"
-          allow(ui).to receive(:read).and_return(word_length)
+          word_length = 3
+          allow(ui).to receive(:read).and_return(word_length.to_s)
 
-          expect(game).to receive(:raffle).with(word_length.to_i)
+          expect(game).to receive(:raffle).with(word_length)
 
           game_flow.next_step
         end
@@ -54,13 +55,13 @@ describe GameFlow do
         end
 
         it "tells if it's not possible to raffle with the given length" do
-          word_length = "20"
+          word_length = "9"
           allow(ui).to receive(:read).and_return(word_length)
           allow(game).to receive(:raffle).and_return(nil)
 
-          error_message = "Não temos uma palavra com o tamanho " <<
-                         "desejado,\n" <<
-                         "é necessário escolher outro tamanho."
+          error_message =
+            "Não temos uma palavra com o tamanho desejado,\n"\
+            "é necessário escolher outro tamanho."
 
           expect(ui).to receive(:write).with(error_message)
 
@@ -70,7 +71,9 @@ describe GameFlow do
     end
 
     context "when the game is in the 'word raffled' state" do
-      before { allow(game).to receive(:state).and_return(:word_raffled) }
+      before do
+        allow(game).to receive(:state).and_return(:word_raffled)
+      end
 
       it "asks the player to guess a letter" do
         question = "Qual letra você acha que a palavra tem?"
@@ -80,7 +83,9 @@ describe GameFlow do
       end
 
       context "and the player guess a letter with success" do
-        before { allow(game).to receive(:guess_letter).and_return(true) }
+        before do
+          allow(game).to receive(:guess_letter).and_return(true)
+        end
 
         it "prints a success message" do
           success_message = "Você adivinhou uma letra com sucesso."
@@ -100,7 +105,9 @@ describe GameFlow do
       end
 
       context "and the player fails to guess a letter" do
-        before { allow(game).to receive(:guess_letter).and_return(false) }
+        before do
+          allow(game).to receive(:guess_letter).and_return(false)
+        end
 
         it "prints an error message" do
           error_message = "Você errou a letra."
@@ -112,7 +119,7 @@ describe GameFlow do
         it "prints the list of the missed parts" do
           allow(game).to receive(:missed_parts).and_return(["cabeça"])
 
-          missed_parts_message = "O boneco da forca perdeu as " <<
+          missed_parts_message = "O boneco da forca perdeu as " \
                                  "seguintes partes do corpo: cabeça"
           expect(ui).to receive(:write).with(missed_parts_message)
 

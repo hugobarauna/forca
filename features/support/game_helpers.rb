@@ -4,9 +4,9 @@ module GameHelpers
   end
 
   def start_new_game
-    set_rafflable_words(%w[hi mom game fruit]) if @raffable_words.nil?
+    set_rafflable_words("hi mom game fruit") if @raffable_words.nil?
 
-    run_interactive("bin/forca \"#{@raffable_words}\"")
+    run_command("bin/forca \"#{@raffable_words}\"", exit_timeout: 3)
   end
 end
 
